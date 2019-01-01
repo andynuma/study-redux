@@ -4,16 +4,20 @@ import { Provider } from "react-redux";
 
 import App from "./containers/App";
 
-import { createStore } from "redux";
+import { createStore, applyMiddleware } from "redux";
 import rootreducer from "./reducers";
 
-const store = createStore(rootreducer);
+import thunk from "redux-thunk";
 
-console.log(store);
+const middleWares = [thunk];
 
-store.subscribe(() => {
-  console.log(store.getState());
-});
+const store = createStore(rootreducer, applyMiddleware(...middleWares));
+
+// console.log(store);
+
+// store.subscribe(() => {
+//   console.log(store.getState());
+// });
 
 // const rootElement = document.getElementById("root");
 render(
